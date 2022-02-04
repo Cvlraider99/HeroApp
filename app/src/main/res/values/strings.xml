@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HeroApp</string>
+    <string name="Imagen">hero image</string>
+    <string name="powerStats">PowerStats</string>
+    <string name="biografia">Biografía</string>
+    <string name="apariencia">Apariencia</string>
+    <string name="trabajos">Trabajos</string>
+    <string name="conexiones">Conexiones</string>
+</resources>
