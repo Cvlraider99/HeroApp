@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.alex99.heroapp.R
+import com.alex99.heroapp.ui.viewmodel.BioViewModel
 import com.alex99.heroapp.ui.viewmodel.InfoViewModel
 
 
@@ -18,6 +19,10 @@ class DesplegarInfo : AppCompatActivity() {
 
     private val statsViewModel:InfoViewModel by lazy {
         ViewModelProvider (this).get(InfoViewModel::class.java)
+    }
+
+    private val bioViewModel:BioViewModel by lazy {
+        ViewModelProvider (this).get(BioViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +36,13 @@ class DesplegarInfo : AppCompatActivity() {
         val labelDurabilidad = findViewById<TextView>(R.id.campoDurabilidad)
         val labelPoder = findViewById<TextView>(R.id.campoPoder)
         val labelCombate = findViewById<TextView>(R.id.campoCombate)
+        val labelNomCom = findViewById<TextView>(R.id.campoNombreCompleto)
+        val labelNacimiento = findViewById<TextView>(R.id.campoNacimiento)
 
 
         val idPersonaje = intent.getStringExtra("STRING_ANTERIOR")
         statsViewModel.onCreate(idPersonaje.toString())
+        bioViewModel.onCreate(idPersonaje.toString())
 
 
         statsViewModel.statsModel.observe(this, {
@@ -44,6 +52,11 @@ class DesplegarInfo : AppCompatActivity() {
             labelDurabilidad.text = it.durability
             labelPoder.text = it.power
             labelCombate.text = it.combat
+        })
+
+        bioViewModel.bioModel.observe(this, {
+            labelNomCom.text = it.fullName
+            labelNacimiento.text = it.placeBirth
         })
     }
 

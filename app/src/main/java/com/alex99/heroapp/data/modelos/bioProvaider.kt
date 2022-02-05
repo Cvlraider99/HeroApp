@@ -1,8 +1,7 @@
 package com.alex99.heroapp.data.modelos
 
-
-class StatsProvaider {
+class BioProvaider {
     companion object{
-        var stats: PowerStats? = null
+        var biografia: Biografia? = null
     }
 }

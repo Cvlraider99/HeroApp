@@ -12,4 +12,6 @@
     <string name="durabilidad">Durabilidad</string>
     <string name="poder">Poder</string>
     <string name="combate">Combate</string>
+    <string name="nombreCompleto">Nombre Completo</string>
+    <string name="lugarNacimiento">Lugar de nacimiento</string>
 </resources>

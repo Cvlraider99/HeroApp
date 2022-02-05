@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alex99.heroapp.data.modelos.PowerStats
-import com.alex99.heroapp.dominio.obtenerStats
+import com.alex99.heroapp.dominio.ObtenerStats
 import kotlinx.coroutines.launch
 
 private const val TAG = "PruebaViewModel"
@@ -18,7 +18,7 @@ class InfoViewModel: ViewModel(){
     fun onCreate(id:String){
         Log.d(TAG,"Se entra al on create")
         viewModelScope.launch {
-            val result = obtenerStats(id)()
+            val result = ObtenerStats(id)()
             Log.d(TAG,"Regresa ${result.intelligence}")
             statsModel.postValue(result)
         }
