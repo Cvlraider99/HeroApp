@@ -7,5 +7,5 @@ import retrofit2.http.Url
 
 interface APIPowerstats {
     @GET
-    suspend fun obtenerPowerstats(@Url url:String): Response<List<PowerStats>>
+    suspend fun obtenerPowerstats(@Url url:String): Response<PowerStats>
 }

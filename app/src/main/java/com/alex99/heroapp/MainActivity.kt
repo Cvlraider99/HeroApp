@@ -5,16 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alex99.heroapp.data.modelos.ListaHeroes
-import com.alex99.heroapp.data.network.APILlamada
 import com.alex99.heroapp.data.network.APIService
 import com.alex99.heroapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: AdaptadorHeroe
     private val nombres = mutableListOf<String>()
     private val imagenes = mutableListOf<String>()
+    private val id = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +31,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        adapter = AdaptadorHeroe(nombres,imagenes)
+        adapter = AdaptadorHeroe(nombres,imagenes,id)
         binding.rvHeroes.layoutManager = LinearLayoutManager(this)
         binding.rvHeroes.adapter = adapter
-    }
-
-
-    private fun getRetrofit():Retrofit{
-        return Retrofit.Builder()
-            .baseUrl("https://www.superheroapi.com/api.php/4961175993942043/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -59,11 +47,15 @@ class MainActivity : AppCompatActivity() {
                 {
                     val nameHeroe = todosHeroes?.name
                     val imageHero = todosHeroes?.image
+                    val idHero = todosHeroes?.id
                     if (nameHeroe != null) {
                         nombres.add(nameHeroe)
                     }
                     if (imageHero != null) {
                         imagenes.add(imageHero)
+                    }
+                    if (idHero != null) {
+                        id.add(idHero)
                     }
                     adapter.notifyDataSetChanged()
                 }

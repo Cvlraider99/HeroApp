@@ -1,10 +1,7 @@
 package com.alex99.heroapp
 
-import android.content.Context
-import android.content.Intent
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
+
 
 import androidx.recyclerview.widget.RecyclerView
 import com.alex99.heroapp.databinding.ItemHeroBinding
@@ -13,7 +10,7 @@ import com.squareup.picasso.Picasso
 
 class HeroeViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
 
-    private lateinit var nombre:String
+    private lateinit var id:String
 
     init{
         itemView.setOnClickListener (this)
@@ -21,16 +18,16 @@ class HeroeViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickLi
 
     private val binding = ItemHeroBinding.bind(view)
 
-    fun bind(name:String, image:String){
-        this.nombre = name
+    fun bind(name:String, image:String, id:String){
+        this.id = id
         Picasso.get().load(image).into(binding.imageHero)
         binding.nombreHeroe.text = name
     }
 
     override fun onClick(p0: View?) {
         val context = itemView.context
-        Toast.makeText(context,"Seleccionaste a $nombre ", Toast.LENGTH_SHORT).show()
-        val intent = DesplegarInfo.nuevoIntent(context,nombre)
+        //Toast.makeText(context,"Seleccionaste a $id ", Toast.LENGTH_SHORT).show()
+        val intent = DesplegarInfo.nuevoIntent(context,id)
         context.startActivity(intent)
     }
 }

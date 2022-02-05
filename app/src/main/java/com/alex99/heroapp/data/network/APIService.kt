@@ -1,6 +1,5 @@
 package com.alex99.heroapp.data.network
 
-import com.alex99.heroapp.core.RetroFitHelper
 import com.alex99.heroapp.core.RetroFitHelper.getRetrofit
 import com.alex99.heroapp.data.modelos.ListaHeroes
 import com.alex99.heroapp.data.modelos.PowerStats
@@ -9,12 +8,13 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 class APIService {
-    private val retrofit = RetroFitHelper.getRetrofit()
+    private val retrofit = getRetrofit()
 
-    suspend fun obtenerStats(id:String):List<PowerStats>{
+    suspend fun obtenerStats(id:String):PowerStats{
+
         return withContext (Dispatchers.IO){
-            val response: Response<List<PowerStats>> = retrofit.create(APIPowerstats::class.java).obtenerPowerstats("$id/image")
-            response.body() ?: emptyList()
+            val response :Response<PowerStats>  = retrofit.create(APIPowerstats::class.java).obtenerPowerstats("$id/powerstats")
+            response.body()!!
         }
     }
 
