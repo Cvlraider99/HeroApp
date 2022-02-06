@@ -1,6 +1,7 @@
 package com.alex99.heroapp.data.network
 
 import com.alex99.heroapp.core.RetroFitHelper.getRetrofit
+import com.alex99.heroapp.data.modelos.Apariencia
 import com.alex99.heroapp.data.modelos.Biografia
 import com.alex99.heroapp.data.modelos.ListaHeroes
 import com.alex99.heroapp.data.modelos.PowerStats
@@ -23,6 +24,14 @@ class APIService {
 
         return withContext (Dispatchers.IO){
             val response :Response<Biografia>  = retrofit.create(APIBio::class.java).obtenerBio("$id/biography")
+            response.body()!!
+        }
+    }
+
+    suspend fun obtenerApa(id:String):Apariencia{
+
+        return withContext (Dispatchers.IO){
+            val response :Response<Apariencia>  = retrofit.create(APIApa::class.java).obtenerApa("$id/appearance")
             response.body()!!
         }
     }

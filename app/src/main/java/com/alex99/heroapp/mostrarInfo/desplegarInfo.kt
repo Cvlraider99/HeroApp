@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.alex99.heroapp.R
+import com.alex99.heroapp.ui.viewmodel.ApaViewModel
 import com.alex99.heroapp.ui.viewmodel.BioViewModel
 import com.alex99.heroapp.ui.viewmodel.InfoViewModel
 
@@ -23,6 +24,10 @@ class DesplegarInfo : AppCompatActivity() {
 
     private val bioViewModel:BioViewModel by lazy {
         ViewModelProvider (this).get(BioViewModel::class.java)
+    }
+
+    private val apaViewModel:ApaViewModel by lazy {
+        ViewModelProvider (this).get(ApaViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +46,18 @@ class DesplegarInfo : AppCompatActivity() {
         val labelAparicion = findViewById<TextView>(R.id.campoPrimera)
         val labelPublisher = findViewById<TextView>(R.id.campoPublisher)
         val labelAligment = findViewById<TextView>(R.id.campoAligment)
+        val labelGenero = findViewById<TextView>(R.id.campoGenero)
+        val labelAltura = findViewById<TextView>(R.id.campoAltura)
+        val labelPeso = findViewById<TextView>(R.id.campoPeso)
+        val labelOjos = findViewById<TextView>(R.id.campoOjos)
+        val labelPelo = findViewById<TextView>(R.id.campoPelo)
+        val labelRaza = findViewById<TextView>(R.id.campoRaza)
 
 
         val idPersonaje = intent.getStringExtra("STRING_ANTERIOR")
         statsViewModel.onCreate(idPersonaje.toString())
         bioViewModel.onCreate(idPersonaje.toString())
-
+        apaViewModel.onCreate(idPersonaje.toString())
 
         statsViewModel.statsModel.observe(this, {
             labelInteligencia.text = it.id
@@ -63,6 +74,15 @@ class DesplegarInfo : AppCompatActivity() {
             labelAparicion.text = it.firstAppearence
             labelPublisher.text = it.publisher
             labelAligment.text = it.alignment
+        })
+
+        apaViewModel.apaModel.observe(this, {
+            labelGenero.text = it.gender
+            labelAltura.text = it.height[1]
+            labelPeso.text = it.weight[1]
+            labelOjos.text = it.eyeColor
+            labelPelo.text = it.hairColor
+            labelRaza.text = it.race
         })
     }
 
