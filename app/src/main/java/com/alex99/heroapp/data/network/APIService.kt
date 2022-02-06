@@ -41,6 +41,14 @@ class APIService {
         }
     }
 
+    suspend fun obtenerCon(id:String):Conexiones{
+
+        return withContext (Dispatchers.IO){
+            val response :Response<Conexiones>  = retrofit.create(APICon::class.java).obtenerCon("$id/connections")
+            response.body()!!
+        }
+    }
+
     suspend fun obtenerListaHeroes(id: String): Response<ListaHeroes> {
         return getRetrofit().create(APILlamada::class.java).obtenerListaHeroes("$id/image")
     }

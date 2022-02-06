@@ -8,10 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.alex99.heroapp.R
-import com.alex99.heroapp.ui.viewmodel.ApaViewModel
-import com.alex99.heroapp.ui.viewmodel.BioViewModel
-import com.alex99.heroapp.ui.viewmodel.InfoViewModel
-import com.alex99.heroapp.ui.viewmodel.TrabViewModel
+import com.alex99.heroapp.ui.viewmodel.*
 
 
 private const val TAG = "desplegarInfo"
@@ -33,6 +30,10 @@ class DesplegarInfo : AppCompatActivity() {
 
     private val trabViewModel:TrabViewModel by lazy {
         ViewModelProvider (this).get(TrabViewModel::class.java)
+    }
+
+    private val conViewModel:ConViewModel by lazy {
+        ViewModelProvider (this).get(ConViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +60,8 @@ class DesplegarInfo : AppCompatActivity() {
         val labelRaza = findViewById<TextView>(R.id.campoRaza)
         val labelOcupacion = findViewById<TextView>(R.id.campoOcupacion)
         val labelBase = findViewById<TextView>(R.id.campoBase)
+        val labelGrupos = findViewById<TextView>(R.id.campoAfiliaciones)
+        val labelParientes = findViewById<TextView>(R.id.campoRelatives)
 
 
         val idPersonaje = intent.getStringExtra("STRING_ANTERIOR")
@@ -66,6 +69,7 @@ class DesplegarInfo : AppCompatActivity() {
         bioViewModel.onCreate(idPersonaje.toString())
         apaViewModel.onCreate(idPersonaje.toString())
         trabViewModel.onCreate(idPersonaje.toString())
+        conViewModel.onCreate(idPersonaje.toString())
 
         statsViewModel.statsModel.observe(this, {
             labelInteligencia.text = it.id
@@ -96,6 +100,11 @@ class DesplegarInfo : AppCompatActivity() {
         trabViewModel.trabModel.observe(this, {
             labelOcupacion.text = it.occupation
             labelBase.text = it.base
+        })
+
+        conViewModel.conModel.observe(this, {
+            labelGrupos.text = it.groupAffiliation
+            labelParientes.text = it.relatives
         })
     }
 
