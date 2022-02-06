@@ -14,4 +14,7 @@
     <string name="combate">Combate</string>
     <string name="nombreCompleto">Nombre Completo</string>
     <string name="lugarNacimiento">Lugar de nacimiento</string>
+    <string name="aparicion">Primera aparicion</string>
+    <string name="publisher">Publisher</string>
+    <string name="alignment">Alignment</string>
 </resources>

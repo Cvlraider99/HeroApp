@@ -38,6 +38,9 @@ class DesplegarInfo : AppCompatActivity() {
         val labelCombate = findViewById<TextView>(R.id.campoCombate)
         val labelNomCom = findViewById<TextView>(R.id.campoNombreCompleto)
         val labelNacimiento = findViewById<TextView>(R.id.campoNacimiento)
+        val labelAparicion = findViewById<TextView>(R.id.campoPrimera)
+        val labelPublisher = findViewById<TextView>(R.id.campoPublisher)
+        val labelAligment = findViewById<TextView>(R.id.campoAligment)
 
 
         val idPersonaje = intent.getStringExtra("STRING_ANTERIOR")
@@ -57,6 +60,9 @@ class DesplegarInfo : AppCompatActivity() {
         bioViewModel.bioModel.observe(this, {
             labelNomCom.text = it.fullName
             labelNacimiento.text = it.placeBirth
+            labelAparicion.text = it.firstAppearence
+            labelPublisher.text = it.publisher
+            labelAligment.text = it.alignment
         })
     }
 
