@@ -3,9 +3,7 @@
     <string name="Imagen">hero image</string>
     <string name="powerStats">PowerStats</string>
     <string name="biografia">Biografía</string>
-    <string name="apariencia">Apariencia</string>
     <string name="trabajos">Trabajos</string>
-    <string name="conexiones">Conexiones</string>
     <string name="intelligencia">Inteligencia</string>
     <string name="fuerza">Fuerza</string>
     <string name="velocidad">Velocidad</string>
@@ -17,4 +15,17 @@
     <string name="aparicion">Primera aparicion</string>
     <string name="publisher">Publisher</string>
     <string name="alignment">Alignment</string>
+    <string name="apariencia">Apariencia</string>
+    <string name="genero">Genero</string>
+    <string name="raza">Raza</string>
+    <string name="trabajo">Trabajo</string>
+    <string name="ocupacion">Ocupacion</string>
+    <string name="base">Base</string>
+    <string name="conexiones">Conexiones</string>
+    <string name="grupos">Grupos</string>
+    <string name="parientes">Parientes</string>
+    <string name="altura">Altura</string>
+    <string name="peso">Peso</string>
+    <string name="color">Color de Ojos</string>
+    <string name="pelo">Color de pelo</string>
 </resources>
