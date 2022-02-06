@@ -1,10 +1,7 @@
 package com.alex99.heroapp.data.network
 
 import com.alex99.heroapp.core.RetroFitHelper.getRetrofit
-import com.alex99.heroapp.data.modelos.Apariencia
-import com.alex99.heroapp.data.modelos.Biografia
-import com.alex99.heroapp.data.modelos.ListaHeroes
-import com.alex99.heroapp.data.modelos.PowerStats
+import com.alex99.heroapp.data.modelos.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -32,6 +29,14 @@ class APIService {
 
         return withContext (Dispatchers.IO){
             val response :Response<Apariencia>  = retrofit.create(APIApa::class.java).obtenerApa("$id/appearance")
+            response.body()!!
+        }
+    }
+
+    suspend fun obtenerTrab(id:String):Trabajo{
+
+        return withContext (Dispatchers.IO){
+            val response :Response<Trabajo>  = retrofit.create(APItrab::class.java).obtenerTrab("$id/work")
             response.body()!!
         }
     }

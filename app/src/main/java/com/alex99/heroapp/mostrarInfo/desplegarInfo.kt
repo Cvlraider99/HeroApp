@@ -11,6 +11,7 @@ import com.alex99.heroapp.R
 import com.alex99.heroapp.ui.viewmodel.ApaViewModel
 import com.alex99.heroapp.ui.viewmodel.BioViewModel
 import com.alex99.heroapp.ui.viewmodel.InfoViewModel
+import com.alex99.heroapp.ui.viewmodel.TrabViewModel
 
 
 private const val TAG = "desplegarInfo"
@@ -28,6 +29,10 @@ class DesplegarInfo : AppCompatActivity() {
 
     private val apaViewModel:ApaViewModel by lazy {
         ViewModelProvider (this).get(ApaViewModel::class.java)
+    }
+
+    private val trabViewModel:TrabViewModel by lazy {
+        ViewModelProvider (this).get(TrabViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,12 +57,15 @@ class DesplegarInfo : AppCompatActivity() {
         val labelOjos = findViewById<TextView>(R.id.campoOjos)
         val labelPelo = findViewById<TextView>(R.id.campoPelo)
         val labelRaza = findViewById<TextView>(R.id.campoRaza)
+        val labelOcupacion = findViewById<TextView>(R.id.campoOcupacion)
+        val labelBase = findViewById<TextView>(R.id.campoBase)
 
 
         val idPersonaje = intent.getStringExtra("STRING_ANTERIOR")
         statsViewModel.onCreate(idPersonaje.toString())
         bioViewModel.onCreate(idPersonaje.toString())
         apaViewModel.onCreate(idPersonaje.toString())
+        trabViewModel.onCreate(idPersonaje.toString())
 
         statsViewModel.statsModel.observe(this, {
             labelInteligencia.text = it.id
@@ -83,6 +91,11 @@ class DesplegarInfo : AppCompatActivity() {
             labelOjos.text = it.eyeColor
             labelPelo.text = it.hairColor
             labelRaza.text = it.race
+        })
+
+        trabViewModel.trabModel.observe(this, {
+            labelOcupacion.text = it.occupation
+            labelBase.text = it.base
         })
     }
 
